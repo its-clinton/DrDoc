@@ -20,11 +20,28 @@
 <div class="fileupload">
     <form action="{% url 'core:upload' %}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        <input type="text" name="name" id="name" placeholder="Enter file name">
-        <input type="file" name="file" id="file">
+        <input type="text" name="name" id="name" placeholder="Enter file name"><br><br>
+        <input type="file" name="file" id="file"><br><br>
         <input type="submit" value="Upload">
     </form>
 </div>
+
+    <!-- display the uploaded files -->
+    {% if files %}
+        <div class="container">
+            <div class="headers">
+                <h2>Uploaded Files</h2>
+            </div>
+            <div class="files">
+                {% for file in files %}
+                    <div class="file">
+                        <a href="{{ file.file.url }}" target="_blank">{{ file.name }}</a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+    
 
 </body>
 </html>

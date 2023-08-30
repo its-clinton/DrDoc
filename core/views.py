@@ -17,7 +17,8 @@ def upload(request, method=["GET", "POST"]):
         model.name = name
         model.file = file
         model.save()
+        
+    files = models.Document.objects.all()
+    context = {"files": files}
     
-    return render(request, "index.html")
-
-# delete document from 
+    return render(request, "index.html", context=context)
